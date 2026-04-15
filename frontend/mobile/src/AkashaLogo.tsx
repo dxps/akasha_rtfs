@@ -1,5 +1,10 @@
 import { SvgXml } from 'react-native-svg'
 
+interface AkashaLogoProps {
+	height?: number
+	width?: number
+}
+
 const akashaLogoSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 694">
   <g fill="#f48324">
@@ -15,12 +20,12 @@ const akashaLogoSvg = `
 </svg>
 `
 
-export function AkashaLogo() {
+export function AkashaLogo({ height = 86, width = 134 }: AkashaLogoProps) {
 	return (
 		<SvgXml
 			accessibilityLabel="Akasha logo"
-			height={86}
-			width={134}
+			height={height}
+			width={width}
 			xml={akashaLogoSvg}
 		/>
 	)
