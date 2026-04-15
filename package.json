@@ -1,0 +1,25 @@
+{
+  "name": "akasha",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend/web",
+    "frontend/mobile",
+    "shared"
+  ],
+  "scripts": {
+    "dev:backend": "bun --filter @akasha/backend dev",
+    "dev:web": "bun --filter @akasha/web dev",
+    "dev:mobile": "bun --filter @akasha/mobile start",
+    "build": "bun --filter '*' build",
+    "typecheck": "bun --filter '*' typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "bun": ">=1.2.0"
+  }
+}
