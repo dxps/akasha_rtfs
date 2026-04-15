@@ -11,6 +11,7 @@
   },
   "include": [
     "App.tsx",
-    "env.d.ts"
+    "env.d.ts",
+    "src"
   ]
 }

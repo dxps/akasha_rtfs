@@ -9,6 +9,7 @@ import {
 	useColorScheme,
 	View,
 } from 'react-native'
+import { AkashaLogo } from './src/AkashaLogo'
 
 const apiBaseUrl =
 	process.env.EXPO_PUBLIC_API_BASE_URL ?? 'http://localhost:9908'
@@ -83,6 +84,9 @@ export default function App() {
 				</Pressable>
 
 				<Text style={styles.eyebrow}>Fullstack TypeScript</Text>
+				<View style={styles.logo}>
+					<AkashaLogo />
+				</View>
 				<Text style={styles.title}>{appInfo.name}</Text>
 				<Text style={styles.description}>{appInfo.description}</Text>
 
@@ -146,6 +150,10 @@ function createStyles(colors: (typeof themes)[ThemeMode]) {
 			letterSpacing: 0,
 			marginBottom: 12,
 			textTransform: 'uppercase',
+		},
+		logo: {
+			alignSelf: 'flex-start',
+			marginBottom: 16,
 		},
 		title: {
 			color: colors.foreground,
