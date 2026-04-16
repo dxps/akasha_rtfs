@@ -20,7 +20,7 @@ export function HomeView() {
 
 	return (
 		<section className="intro">
-			<h1>{appInfo.name}</h1>
+			<h1 className="striped-title">{appInfo.name}</h1>
 			<p>{appInfo.description}</p>
 			<div className="actions">
 				<button type="button" onClick={checkApiHealth}>

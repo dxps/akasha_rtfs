@@ -13,6 +13,8 @@ interface HomeViewProps {
 	colors: ThemeColors
 }
 
+const titleStripeTops = [5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57]
+
 export function HomeView({ colors }: HomeViewProps) {
 	const [apiStatus, setApiStatus] = useState('Not checked yet')
 	const styles = createStyles(colors)
@@ -32,7 +34,7 @@ export function HomeView({ colors }: HomeViewProps) {
 			<View style={styles.logo}>
 				<AkashaLogo />
 			</View>
-			<Text style={styles.title}>{appInfo.name}</Text>
+			<StripedTitle colors={colors} styles={styles} title={appInfo.name} />
 			<Text style={styles.description}>{appInfo.description}</Text>
 
 			<View style={styles.actions}>
@@ -66,6 +68,44 @@ export function HomeView({ colors }: HomeViewProps) {
 	)
 }
 
+interface StripedTitleProps {
+	colors: ThemeColors
+	styles: ReturnType<typeof createStyles>
+	title: string
+}
+
+function StripedTitle({ colors, styles, title }: StripedTitleProps) {
+	return (
+		<View
+			accessibilityLabel={title}
+			accessible
+			style={styles.titleFrame}
+		>
+			<Text
+				accessibilityElementsHidden
+				importantForAccessibility="no"
+				style={styles.title}
+			>
+				{title}
+			</Text>
+			<View
+				pointerEvents="none"
+				style={StyleSheet.absoluteFill}
+			>
+				{titleStripeTops.map((top) => (
+					<View
+						key={top}
+						style={[
+							styles.titleStripe,
+							{ backgroundColor: colors.background, top },
+						]}
+					/>
+				))}
+			</View>
+		</View>
+	)
+}
+
 function createStyles(colors: ThemeColors) {
 	return StyleSheet.create({
 		container: {
@@ -87,11 +127,22 @@ function createStyles(colors: ThemeColors) {
 			alignSelf: 'flex-start',
 			marginBottom: 16,
 		},
+		titleFrame: {
+			alignSelf: 'flex-start',
+			overflow: 'hidden',
+			position: 'relative',
+		},
 		title: {
 			color: colors.foreground,
 			fontFamily: fonts.extraBold,
 			fontSize: 56,
 			lineHeight: 60,
+		},
+		titleStripe: {
+			height: 1,
+			left: 0,
+			position: 'absolute',
+			right: 0,
 		},
 		description: {
 			color: colors.muted,

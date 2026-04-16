@@ -237,6 +237,19 @@ h1 {
 	margin: 0;
 }
 
+.striped-title {
+	background: repeating-linear-gradient(
+		to bottom,
+		var(--fg) 0,
+		var(--fg) 0.055em,
+		transparent 0.055em,
+		transparent 0.11em
+	);
+	background-clip: text;
+	color: transparent;
+	-webkit-background-clip: text;
+}
+
 p {
 	color: var(--muted);
 	font-size: 1rem;
