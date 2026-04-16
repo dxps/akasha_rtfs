@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
+import { fonts } from '../fonts'
 import { type ThemeColors } from '../theme'
 
 interface PageLabelViewProps {
@@ -28,8 +29,8 @@ function createStyles(colors: ThemeColors) {
 		},
 		title: {
 			color: colors.foreground,
+			fontFamily: fonts.extraBold,
 			fontSize: 34,
-			fontWeight: '800',
 			textAlign: 'center',
 		},
 	})

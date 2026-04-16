@@ -3,6 +3,7 @@ import { Server, Smartphone } from 'lucide-react-native'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { AkashaLogo } from '../AkashaLogo'
+import { fonts } from '../fonts'
 import { type ThemeColors } from '../theme'
 
 const apiBaseUrl =
@@ -28,7 +29,6 @@ export function HomeView({ colors }: HomeViewProps) {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.eyebrow}>Fullstack TypeScript</Text>
 			<View style={styles.logo}>
 				<AkashaLogo />
 			</View>
@@ -77,8 +77,8 @@ function createStyles(colors: ThemeColors) {
 		},
 		eyebrow: {
 			color: colors.green,
+			fontFamily: fonts.black,
 			fontSize: 13,
-			fontWeight: '900',
 			letterSpacing: 0,
 			marginBottom: 12,
 			textTransform: 'uppercase',
@@ -89,12 +89,13 @@ function createStyles(colors: ThemeColors) {
 		},
 		title: {
 			color: colors.foreground,
+			fontFamily: fonts.extraBold,
 			fontSize: 56,
-			fontWeight: '800',
 			lineHeight: 60,
 		},
 		description: {
 			color: colors.muted,
+			fontFamily: fonts.regular,
 			fontSize: 18,
 			lineHeight: 28,
 			marginBottom: 24,
@@ -115,8 +116,8 @@ function createStyles(colors: ThemeColors) {
 		},
 		primaryButtonText: {
 			color: colors.background,
+			fontFamily: fonts.regular,
 			fontSize: 16,
-			fontWeight: '400',
 		},
 		nativeBadge: {
 			alignItems: 'center',
@@ -129,8 +130,8 @@ function createStyles(colors: ThemeColors) {
 		},
 		nativeBadgeText: {
 			color: colors.background,
+			fontFamily: fonts.regular,
 			fontSize: 15,
-			fontWeight: '400',
 		},
 		status: {
 			alignItems: 'center',
@@ -140,11 +141,12 @@ function createStyles(colors: ThemeColors) {
 		},
 		statusText: {
 			color: colors.green,
+			fontFamily: fonts.extraBold,
 			fontSize: 16,
-			fontWeight: '800',
 		},
 		route: {
 			color: colors.muted,
+			fontFamily: fonts.regular,
 			fontSize: 14,
 			lineHeight: 22,
 			marginTop: 8,

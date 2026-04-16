@@ -1,5 +1,8 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import "@fontsource/work-sans/latin-400.css";
+import "@fontsource/work-sans/latin-800.css";
+import "@fontsource/work-sans/latin-900.css";
 import { Header } from "./components/Header";
 import { getCurrentPath, type AppPath } from "./routing";
 import { DataExplorerView } from "./views/DataExplorerView";

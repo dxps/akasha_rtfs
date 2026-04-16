@@ -16,9 +16,9 @@ export const themes = {
 		background: '#3c3c3c',
 		blue: '#83a598',
 		border: '#665c54',
-		foreground: '#d5c4a1',
+		foreground: '#e0e0e0',
 		green: '#b8bb26',
-		muted: '#bdae93',
+		muted: '#dbd1be',
 		surface: '#3c3836',
 	},
 } as const

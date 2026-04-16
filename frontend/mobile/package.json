@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@akasha/shared": "workspace:*",
+    "@expo-google-fonts/work-sans": "^0.4.2",
     "expo": "^53.0.9",
+    "expo-font": "~13.3.2",
     "lucide-react-native": "^1.8.0",
     "react": "19.0.0",
     "react-native": "0.79.6",

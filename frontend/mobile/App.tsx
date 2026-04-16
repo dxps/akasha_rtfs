@@ -1,3 +1,9 @@
+import {
+	WorkSans_400Regular,
+	WorkSans_800ExtraBold,
+	WorkSans_900Black,
+	useFonts,
+} from '@expo-google-fonts/work-sans'
 import { Moon, Sun } from 'lucide-react-native'
 import { useMemo, useState } from 'react'
 import {
@@ -17,6 +23,11 @@ import { PageLabelView } from './src/views/PageLabelView'
 
 export default function App() {
 	const deviceTheme = useColorScheme()
+	const [fontsLoaded] = useFonts({
+		WorkSans_400Regular,
+		WorkSans_800ExtraBold,
+		WorkSans_900Black,
+	})
 	const [theme, setTheme] = useState<ThemeMode>(
 		deviceTheme === 'dark' ? 'dark' : 'light',
 	)
@@ -29,6 +40,17 @@ export default function App() {
 		) : (
 			<Sun color={colors.foreground} size={18} />
 		)
+
+	if (!fontsLoaded) {
+		return (
+			<SafeAreaView style={styles.safeArea}>
+				<StatusBar
+					backgroundColor={colors.background}
+					barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+				/>
+			</SafeAreaView>
+		)
+	}
 
 	function renderView() {
 		switch (activeView) {
