@@ -92,7 +92,7 @@ function createStyles(colors: ThemeColors) {
 			width: 56,
 		},
 		activeFooterItem: {
-			backgroundColor: colors.surface,
+			backgroundColor: 'transparent',
 		},
 	})
 }

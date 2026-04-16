@@ -9,6 +9,8 @@ This is Akasha implementation done using React.js (and React Native) with TypeSc
 - `frontend/mobile` - React Native mobile app powered by Expo.
 - `shared` - TypeScript types, constants, and utilities shared by backend and frontend apps.
 
+<br/>
+
 ## Getting started
 
 Install dependencies:
@@ -17,26 +19,22 @@ Install dependencies:
 bun install
 ```
 
-Run the backend:
+<br/>
 
-```sh
-bun run dev:backend
-```
+## Running
 
-Run the web frontend:
+### Back-end
 
-```sh
-bun run dev:web
-```
+Run the backend using `bun run dev:backend`. It exposes a health endpoint at `http://localhost:9908/health`.
 
-The web frontend can be accessed at `http://localhost:9909`.
+#### Front-end
+
+Run the web frontend using `bun run dev:web`. It can be accessed at `http://localhost:9909`.
 
 Run the mobile frontend:
 
-```sh
-bun run dev:mobile
-```
-
-The backend exposes a health endpoint at `http://localhost:9908/health`.
+- `bun run dev:mobile` starts Expo and opens the app on a connected Android device or emulator.
+- `bun run dev:mobile:ios` starts Expo and opens the app in an iOS simulator.
+- `bun run dev:mobile:metro` starts only Metro for manual Expo Go scanning.
 
 For mobile device testing, set `EXPO_PUBLIC_API_BASE_URL` to the backend URL reachable from the device.

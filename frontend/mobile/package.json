@@ -2,7 +2,7 @@
   "name": "@akasha/mobile",
   "version": "0.1.0",
   "private": true,
-  "main": "expo/AppEntry",
+  "main": "index.ts",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -15,12 +15,12 @@
     "@akasha/shared": "workspace:*",
     "expo": "^53.0.9",
     "lucide-react-native": "^1.8.0",
-    "react": "^19.0.0",
-    "react-native": "^0.79.2",
-    "react-native-svg": "^15.15.4"
+    "react": "19.0.0",
+    "react-native": "0.79.6",
+    "react-native-svg": "15.11.2"
   },
   "devDependencies": {
-    "@types/react": "^19.0.14",
-    "typescript": "^5.8.3"
+    "@types/react": "~19.0.10",
+    "typescript": "~5.8.3"
   }
 }

@@ -33,7 +33,7 @@ export function Header({ onToggleTheme, theme }: HeaderProps) {
   return (
     <header className="app-header">
       <SpaLink ariaLabel="Akasha home" className="brand" to="/">
-        <img src="/akasha-logo.svg" alt="" />
+        <img src="/akasha-logo.png" alt="" />
       </SpaLink>
       <nav className="header-nav" aria-label="Primary navigation">
         <SpaLink to="/data-explorer">

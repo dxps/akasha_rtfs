@@ -1,9 +1,11 @@
 import { Moon, Sun } from 'lucide-react-native'
 import { useMemo, useState } from 'react'
 import {
+	Platform,
 	Pressable,
 	SafeAreaView,
 	StyleSheet,
+	StatusBar,
 	useColorScheme,
 	View,
 } from 'react-native'
@@ -43,24 +45,34 @@ export default function App() {
 
 	return (
 		<SafeAreaView style={styles.safeArea}>
+			<StatusBar
+				backgroundColor={colors.background}
+				barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+			/>
 			<View style={styles.screen}>
-				<Pressable
-					accessibilityLabel={
-						theme === 'light'
-							? 'Switch to dark theme'
-							: 'Switch to light theme'
-					}
-					accessibilityRole="button"
-					style={styles.themeButton}
-					onPress={() =>
-						setTheme((current) =>
-							current === 'light' ? 'dark' : 'light',
-						)
-					}
-				>
-					{themeIcon}
-				</Pressable>
 				{renderView()}
+				<View pointerEvents="box-none" style={styles.topBar}>
+					<Pressable
+						accessibilityLabel={
+							theme === 'light'
+								? 'Switch to dark theme'
+								: 'Switch to light theme'
+						}
+						accessibilityRole="button"
+						hitSlop={8}
+						style={({ pressed }) => [
+							styles.themeButton,
+							pressed ? styles.themeButtonPressed : null,
+						]}
+						onPress={() =>
+							setTheme((current) =>
+								current === 'light' ? 'dark' : 'light',
+							)
+						}
+					>
+						{themeIcon}
+					</Pressable>
+				</View>
 				<FooterNav
 					activeView={activeView}
 					colors={colors}
@@ -78,19 +90,28 @@ function createStyles(colors: ThemeColors) {
 			flex: 1,
 		},
 		screen: {
+			backgroundColor: colors.background,
 			flex: 1,
+		},
+		topBar: {
+			left: 0,
+			paddingHorizontal: 24,
+			paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight ?? 24 : 24,
+			position: 'absolute',
+			right: 0,
+			top: 0,
+			zIndex: 10,
 		},
 		themeButton: {
 			alignItems: 'center',
 			backgroundColor: 'transparent',
 			borderRadius: 8,
+			height: 40,
 			justifyContent: 'center',
-			left: 24,
-			minHeight: 36,
-			position: 'absolute',
-			top: 24,
-			width: 36,
-			zIndex: 2,
+			width: 40,
+		},
+		themeButtonPressed: {
+			opacity: 0.72,
 		},
 	})
 }
