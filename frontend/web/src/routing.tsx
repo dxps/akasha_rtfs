@@ -1,4 +1,4 @@
-import { type MouseEvent, type ReactNode } from "react";
+import { forwardRef, type AnchorHTMLAttributes, type MouseEvent, type ReactNode } from "react";
 
 export type AppPath = "/" | "/data-explorer" | "/types" | "/profile";
 
@@ -12,17 +12,24 @@ export function getCurrentPath(): AppPath {
   return "/";
 }
 
-interface SpaLinkProps {
+interface SpaLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
   ariaLabel?: string;
   children: ReactNode;
-  className?: string;
   onNavigate?: () => void;
-  role?: string;
   to: AppPath;
 }
 
-export function SpaLink({ ariaLabel, children, className, onNavigate, role, to }: SpaLinkProps) {
+export const SpaLink = forwardRef<HTMLAnchorElement, SpaLinkProps>(function SpaLink(
+  { ariaLabel, children, className, onClick, onNavigate, to, ...props },
+  ref
+) {
   function navigate(event: MouseEvent<HTMLAnchorElement>): void {
+    onClick?.(event);
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     event.preventDefault();
 
     if (window.location.pathname !== to) {
@@ -34,8 +41,15 @@ export function SpaLink({ ariaLabel, children, className, onNavigate, role, to }
   }
 
   return (
-    <a aria-label={ariaLabel} className={className} href={to} role={role} onClick={navigate}>
+    <a
+      {...props}
+      aria-label={ariaLabel}
+      className={className}
+      href={to}
+      ref={ref}
+      onClick={navigate}
+    >
       {children}
     </a>
   );
-}
+});

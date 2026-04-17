@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { Database, Moon, Shapes, Sun, User } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Database, House, Moon, Shapes, Sun, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SpaLink } from "../routing";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { SpaLink, type AppPath } from "../routing";
 
 interface HeaderProps {
   onToggleTheme: () => void;
@@ -36,30 +37,39 @@ export function Header({ onToggleTheme, theme }: HeaderProps) {
       <SpaLink ariaLabel="Akasha home" className="brand" to="/">
         <img src="/akasha-logo.png" alt="" />
       </SpaLink>
-      <nav className="header-nav" aria-label="Primary navigation">
-        <SpaLink to="/data-explorer">
-          <Database aria-hidden="true" />
-          Data Explorer
-        </SpaLink>
-        <SpaLink to="/types">
-          <Shapes aria-hidden="true" />
-          Types Mgmt
-        </SpaLink>
-      </nav>
+      <TooltipProvider>
+        <nav className="header-nav" aria-label="Primary navigation">
+          <HeaderNavLink label="Home" to="/">
+            <House aria-hidden="true" />
+          </HeaderNavLink>
+          <HeaderNavLink label="Data Explorer" to="/data-explorer">
+            <Database aria-hidden="true" />
+          </HeaderNavLink>
+          <HeaderNavLink label="Types Mgmt" to="/types">
+            <Shapes aria-hidden="true" />
+          </HeaderNavLink>
+        </nav>
+      </TooltipProvider>
       <div className="header-actions" ref={userMenuRef}>
-        <Button
-          aria-expanded={isUserMenuOpen}
-          aria-haspopup="menu"
-          aria-label="Open user menu"
-          className="icon-button"
-          size="icon"
-          title="User profile"
-          type="button"
-          variant="ghost"
-          onClick={() => setIsUserMenuOpen((current) => !current)}
-        >
-          <User aria-hidden="true" />
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                aria-expanded={isUserMenuOpen}
+                aria-haspopup="menu"
+                aria-label="Open user menu"
+                className="icon-button header-user-button"
+                size="icon"
+                type="button"
+                variant="ghost"
+                onClick={() => setIsUserMenuOpen((current) => !current)}
+              >
+                <User aria-hidden="true" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>User profile</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         {isUserMenuOpen ? (
           <div className="user-menu" role="menu">
             <SpaLink role="menuitem" to="/profile" onNavigate={() => setIsUserMenuOpen(false)}>
@@ -82,5 +92,24 @@ export function Header({ onToggleTheme, theme }: HeaderProps) {
         ) : null}
       </div>
     </header>
+  );
+}
+
+interface HeaderNavLinkProps {
+  children: ReactNode;
+  label: string;
+  to: AppPath;
+}
+
+function HeaderNavLink({ children, label, to }: HeaderNavLinkProps) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <SpaLink ariaLabel={label} className="header-nav-link" to={to}>
+          {children}
+        </SpaLink>
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
   );
 }
