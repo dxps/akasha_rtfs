@@ -21,9 +21,15 @@ Install the dependencies using `bun install`.
 
 ## Running
 
+### PostgreSQL
+
+Run PostgreSQL locally using `./dev_db.sh`. It starts or reuses a Docker container named `rebirth-db` and prints the matching `DATABASE_URL`.
+
 ### Back-end
 
-Run the backend using `bun run dev:backend`. It exposes a health endpoint at `http://localhost:9908/health`.
+Copy `.env.example` to `.env` and update the values in the file, if needed.<br/>
+Run the backend using `bun run dev:backend` or `./dev_be.sh` provided script.<br/>
+It can be accessed at `http://localhost:9908`.
 
 #### Front-end
 

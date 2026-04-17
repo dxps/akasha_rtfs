@@ -27,3 +27,11 @@ export function createHealthResponse(status: ServiceStatus): HealthResponse {
 		status,
 	}
 }
+
+export type {
+	AccessLevel,
+	AccessLevelId,
+	CreateAccessLevelInput,
+	UpdateAccessLevelInput,
+} from './security/access-level'
+export { accessLevelModel, isAccessLevelId } from './security/access-level'

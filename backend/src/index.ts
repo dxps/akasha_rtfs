@@ -1,6 +1,12 @@
 import { apiRoutes, appInfo, createHealthResponse, jsonHeaders } from "@akasha/shared";
+import { runMigrations } from "./db/migrate";
+import { loadEnvFiles } from "./env";
+
+loadEnvFiles();
 
 const port = Number.parseInt(Bun.env.PORT ?? "9908", 10);
+
+await runMigrations();
 
 const server = Bun.serve({
   port,
