@@ -1,5 +1,35 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted-ui);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent-ui);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--font-sans: "Work Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 :root {
-  --bg: #e2e0d7;
+	--bg: #e2e0d7;
 	--fg: #504945;
 	--muted: #7c6f64;
 	--surface: #f2e5bc;
@@ -9,6 +39,24 @@
 	--accent-strong: #af3a03;
 	--green: #79740e;
 	--blue: #076678;
+	--radius: 8px;
+	--background: var(--bg);
+	--foreground: var(--fg);
+	--card: var(--surface);
+	--card-foreground: var(--fg);
+	--popover: var(--menu-bg);
+	--popover-foreground: var(--fg);
+	--primary: var(--fg);
+	--primary-foreground: var(--bg);
+	--secondary: var(--muted);
+	--secondary-foreground: var(--bg);
+	--muted-ui: color-mix(in srgb, var(--fg) 10%, transparent);
+	--muted-foreground: var(--muted);
+	--accent-ui: #d79921;
+	--accent-foreground: var(--bg);
+	--destructive: var(--accent-strong);
+	--input: var(--border);
+	--ring: var(--blue);
 	color: var(--fg);
 	background: var(--bg);
 	font-family:
@@ -34,6 +82,23 @@
 	--accent-strong: #fe8019;
 	--green: #b8bb26;
 	--blue: #83a598;
+	--background: var(--bg);
+	--foreground: var(--fg);
+	--card: var(--surface);
+	--card-foreground: var(--fg);
+	--popover: var(--menu-bg);
+	--popover-foreground: var(--fg);
+	--primary: var(--fg);
+	--primary-foreground: var(--bg);
+	--secondary: var(--muted);
+	--secondary-foreground: var(--bg);
+	--muted-ui: color-mix(in srgb, var(--fg) 10%, transparent);
+	--muted-foreground: var(--muted);
+	--accent-ui: var(--accent);
+	--accent-foreground: #282828;
+	--destructive: var(--accent-strong);
+	--input: var(--border);
+	--ring: var(--blue);
 }
 
 * {
@@ -49,7 +114,7 @@ a {
 	color: inherit;
 }
 
-button {
+button:not([data-slot="button"]) {
 	align-items: center;
 	border: 0;
 	border-radius: 8px;
@@ -65,8 +130,8 @@ button {
 	padding: 0.42rem 0.58rem;
 }
 
-button:hover {
-  background: #d79921;
+button:not([data-slot="button"]):hover {
+	background: #d79921;
 }
 
 button svg,

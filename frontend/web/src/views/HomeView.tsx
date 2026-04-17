@@ -1,6 +1,7 @@
 import { apiRoutes, appInfo, type HealthResponse } from '@akasha/shared'
 import { Server, Smartphone } from 'lucide-react'
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:9908'
 
@@ -23,10 +24,10 @@ export function HomeView() {
 			<h1 className="striped-title">{appInfo.name}</h1>
 			<p>{appInfo.description}</p>
 			<div className="actions">
-				<button type="button" onClick={checkApiHealth}>
+				<Button type="button" onClick={checkApiHealth}>
 					<Server aria-hidden="true" />
 					Check API health
-				</button>
+				</Button>
 				<div className="mobile-note">
 					<Smartphone aria-hidden="true" />
 					React Native ready

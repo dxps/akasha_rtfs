@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Database, Moon, Shapes, Sun, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { SpaLink } from "../routing";
 
 interface HeaderProps {
@@ -46,34 +47,37 @@ export function Header({ onToggleTheme, theme }: HeaderProps) {
         </SpaLink>
       </nav>
       <div className="header-actions" ref={userMenuRef}>
-        <button
+        <Button
           aria-expanded={isUserMenuOpen}
           aria-haspopup="menu"
           aria-label="Open user menu"
           className="icon-button"
+          size="icon"
           title="User profile"
           type="button"
+          variant="ghost"
           onClick={() => setIsUserMenuOpen((current) => !current)}
         >
           <User aria-hidden="true" />
-        </button>
+        </Button>
         {isUserMenuOpen ? (
           <div className="user-menu" role="menu">
             <SpaLink role="menuitem" to="/profile" onNavigate={() => setIsUserMenuOpen(false)}>
               <User aria-hidden="true" />
               Profile
             </SpaLink>
-            <button
+            <Button
               aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
               className="theme-toggle"
               role="menuitem"
               title={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
               type="button"
+              variant="ghost"
               onClick={toggleTheme}
             >
               {theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
               Toggle Theme
-            </button>
+            </Button>
           </div>
         ) : null}
       </div>

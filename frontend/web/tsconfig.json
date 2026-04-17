@@ -7,9 +7,15 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "types": [
       "vite/client"
-    ]
+    ],
+    "verbatimModuleSyntax": true
   },
   "include": [
     "src",
